@@ -1,5 +1,7 @@
 import express, { json } from "express";
 
+import test from "./routes/test.js";
+
 const app = express();
 const port = process.env.PORT || 4000;
 
@@ -20,5 +22,7 @@ app.use((req, res, next) => {
   res.set("Access-Control-Allow-Headers", "*");
   next();
 });
+
+app.use(test);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
