@@ -1,5 +1,4 @@
 import express, { json } from "express";
-
 import test from "./routes/test.js";
 
 const app = express();
