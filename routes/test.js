@@ -1,24 +1,22 @@
 import express from "express";
+import { db } from "../config/db.js";
 
 const router = express.Router();
-router.get("/test", async (req, res) => {
-  const message = "I just wanted to say, 'Have a naice day :D'";
-  const randomSuccess = Math.random() < 0.5;
+router.get("/test", async (_, res) => {
   try {
-    if (randomSuccess) {
+    const sqlQuery = "SELECT * FROM Product";
+    db.query(sqlQuery, function (err, result) {
+      if (err) throw err;
+      db.end();
+      
       return res.status(200).json({
         status: 200,
-        data: message,
-      });
-    }
-    return res.status(400).json({
-      status: 400,
-      data: "A literally random error occured",
     });
   } catch (error) {
     return res.status(400).json({
       status: 400,
-      data: "An error occured in the backend",
+      // data: error.message,
+      data: "An error occured in the backend"
     });
   }
 });
