@@ -8,17 +8,17 @@ router.get("/test", async (req, res) => {
     if (randomSuccess) {
       return res.status(200).json({
         status: 200,
-        data: message
+        data: message,
       });
     }
     return res.status(400).json({
       status: 400,
-      data: "A literally random error occured"
+      data: "A literally random error occured",
     });
   } catch (error) {
     return res.status(400).json({
       status: 400,
-      data: "An error occured in the backend"
+      data: "An error occured in the backend",
     });
   }
 });
