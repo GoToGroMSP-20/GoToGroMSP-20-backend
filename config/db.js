@@ -1,7 +1,4 @@
 import mysql from "mysql";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 export const db = mysql.createConnection({
   host: process.env.NODE_ENV === "production" ? process.env.PROD_DB_HOST : process.env.DEV_DB_HOST,
