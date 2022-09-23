@@ -10,7 +10,6 @@ router.get("/test", async (_, res) => {
       
       return res.status(200).json({
         data: result
-      });
     });
     } catch (error) {
     return res.status(400).json({
