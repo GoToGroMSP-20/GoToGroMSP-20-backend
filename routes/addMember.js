@@ -8,7 +8,6 @@ router.post("/addmember", async (req, res) => {
     const sqlQuery = `INSERT INTO Member (lastName, firstName, dob, email, mobile) VALUES (?, ?, ?, ?, ?);`;
     db.query(sqlQuery, [lastName, firstName, dob, email, mobile], function (err, _) {
       if (err) throw err;
-      db.end();
 
       return res.status(200);
     });

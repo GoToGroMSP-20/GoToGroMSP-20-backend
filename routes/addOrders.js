@@ -8,7 +8,6 @@ router.post("/addorder", async (req, res) => {
     const sqlQuery = "INSERT INTO Transaction (transaction_id, member_id, date_purchased) VALUES (?, ?, ?);";
     db.query(sqlQuery, [transaction_id, member_id, date_purchased], function (err, _) {
       if (err) throw err;
-      db.end();
 
       return res.status(200);
     });
