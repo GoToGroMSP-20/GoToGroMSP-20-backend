@@ -4,12 +4,10 @@ import { db } from "../config/db.js";
 const router = express.Router();
 router.post("/addorder", async (req, res) => {
   try {
-    let transaction_id = req.body.transaction_id;
-    let member_id = req.body.member_id;
-    let date_purchased = req.body.date_purchased;
+    const {transaction_id, member_id, date_purchased} = req.body;
     const sqlQuery =
-      "INSERT INTO Transaction (transaction_id, member_id, date_purchased) VALUES ('transaction_id', 'member_id', 'date_purchased');";
-    db.query(sqlQuery, function (err, result) {
+      "INSERT INTO Transaction (transaction_id, member_id, date_purchased) VALUES (?, ?, ?);";
+    db.query(sqlQuery, [transaction_id, member_id, date_purchased], function (err, result) {
       if (err) throw err;
       db.end();
 
