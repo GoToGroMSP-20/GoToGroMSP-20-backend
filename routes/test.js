@@ -7,17 +7,16 @@ router.get("/test", async (_, res) => {
     const sqlQuery = "SELECT * FROM Product";
     db.query(sqlQuery, function (err, result) {
       if (err) throw err;
-      db.end();
       
       return res.status(200).json({
-        status: 200,
         data: result
+      });
     });
-  } catch (error) {
+  }
+  catch (error) {
     return res.status(400).json({
-      status: 400,
-      // data: error.message,
-      data: "An error occured in the backend"
+      // error.message,
+      message: "An error occured in the backend"
     });
   }
 });

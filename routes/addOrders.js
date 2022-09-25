@@ -4,24 +4,17 @@ import { db } from "../config/db.js";
 const router = express.Router();
 router.post("/addorder", async (req, res) => {
   try {
-    let transaction_id = req.body.transaction_id;
-    let member_id = req.body.member_id;
-    let date_purchased = req.body.date_purchased;
-    const sqlQuery =
-      "INSERT INTO Transaction (transaction_id, member_id, date_purchased) VALUES ('transaction_id', 'member_id', 'date_purchased');";
-    db.query(sqlQuery, function (err, result) {
+    const {transaction_id, member_id, date_purchased} = req.body;
+    const sqlQuery = "INSERT INTO Transaction (transaction_id, member_id, date_purchased) VALUES (?, ?, ?);";
+    db.query(sqlQuery, [transaction_id, member_id, date_purchased], function (err, _) {
       if (err) throw err;
-      db.end();
 
-      return res.status(200).json({
-        status: 200,
-      });
+      return res.status(200);
     });
   } catch (error) {
     return res.status(400).json({
-      status: 400,
-      // data: error.message,
-      data: "An error occured in the backend",
+      // message: error.message,
+      message: "An error occured in the backend",
     });
   }
 });
