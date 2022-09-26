@@ -1,5 +1,7 @@
 import express, { json } from "express";
 import test from "./routes/test.js";
+import addMember from "./routes/addMember.js";
+import addOrder from "./routes/addOrder.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -23,5 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.use(test);
+app.use(addMember);
+app.use(addOrder);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
