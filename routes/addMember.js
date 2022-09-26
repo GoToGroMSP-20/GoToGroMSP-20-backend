@@ -9,7 +9,9 @@ router.post("/addmember", async (req, res) => {
     db.query(sqlQuery, [lastName, firstName, dob, email, mobile], function (err, _) {
       if (err) throw err;
 
-      return res.status(200);
+      return res.status(200).json({
+        message: "success",
+      });
     });
   } catch (error) {
     return res.status(400).json({
